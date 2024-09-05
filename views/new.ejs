@@ -1,0 +1,22 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="/styles.css">
+    <title>Mini Message Board</title>
+</head>
+
+<body>
+    <h1>New Message</h1>
+    <form method="post" action="new.ejs">
+        <div class="input-container" id="user-input-container">
+            <label for="user" class="input-label">User:</label>
+            <input type="text" id="user" name="user">
+        </div>
+        <div class="input-container" id="message-input-container">
+            <label for="message" class="input-label">Message:</label>
+            <textarea id="message" name="message" rows="5"></textarea>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+
+</html>
