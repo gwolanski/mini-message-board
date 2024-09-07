@@ -8,7 +8,14 @@
 <body>
     <div id="header-container">
         <h1 class="heading">Mini Message Board</h1>
-        <button id="new-message-button">+ New Message</button>
+
+        <nav>
+            <% for (let i=0; i < links.length; i++) { %>
+                <button class="<%= links[i].className %>" onclick="window.location.href='<%= links[i].href %>'">
+                    <%= links[i].text %>
+                </button>
+                <% } %>
+        </nav>
     </div>
 </body>
 

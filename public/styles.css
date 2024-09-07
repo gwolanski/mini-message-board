@@ -7,16 +7,18 @@ body {
 body {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    background: linear-gradient(orange, rgb(239, 92, 116), purple, rgb(53, 0, 53));
+    align-items: flex-start;
+    background: linear-gradient(rgba(255, 166, 0, 0.8), rgb(239, 92, 116, 0.8), rgba(128, 0, 128, 0.8), rgb(53, 0, 53, 0.8));
 }
 
 #header-container {
     display: flex;
     flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 100px;
     padding: 1rem;
+    box-sizing: border-box;
     width: 100%;
     border: rgb(123, 123, 123) 1px solid;
     background: rgba(243, 227, 199, 0.554);
@@ -24,6 +26,11 @@ body {
 
 .heading {
     color: black;
+    padding-left: 100px;
+}
+
+nav {
+    margin: auto 0;
 }
 
 #new-message-button {
@@ -36,6 +43,7 @@ body {
 .messages {
     display: flex;
     flex-direction: column;
+    width: 70%;
     gap: 20px;
 }
 
@@ -64,6 +72,11 @@ body {
     max-width: 1000px;
 }
 
+.new-message-page-container {
+    margin-left: 20px;
+    width: 90%;
+}
+
 form {
     display: flex;
     flex-direction: column;
@@ -71,29 +84,50 @@ form {
     padding: 1rem;
     border: rgb(123, 123, 123) 1px solid;
     background: rgba(243, 227, 199, 0.554);
-    width: 60%;
+    width: 50%;
+    min-width: 510px;
 }
 
 .input-container {
-    max-width: 90%;
+    max-width: 95%;
     display: grid;
     grid-template-columns: 15% 85%;
 }
 
 textarea,
 input {
-    max-width: 1000px;
+    max-width: 950px;
     padding: 5px;
 }
 
 .input-label {
     grid-column: 1;
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     font-weight: bold;
 }
 
 button {
-    width: 100px;
     font-size: 1.1rem;
     align-self: center;
+    padding: 5px;
+}
+
+.home-button {
+    margin-right: 15px;
+}
+
+.new-message-button {
+    background-color: lightgreen;
+}
+
+@media screen and (max-width: 640px) {
+    #header-container {
+        gap: 40px;
+    }
+
+    nav {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
 }
