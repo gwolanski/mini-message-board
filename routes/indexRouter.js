@@ -1,28 +1,21 @@
 const express = require('express');
 const router = express.Router();
-const getFormattedDate = require('../utils/date');
+const { getAllMessages, addNewMesasge } = require('../db/queries');
 
 const links = [
     { href: "/", text: "Home", className: "home-button" },
     { href: "new", text: "+ New Message", className: "new-message-button" },
 ];
 
-const messages = [
-    {
-        text: "I live, breathe, eat fetch.",
-        user: "Chaco",
-        added: getFormattedDate()
-    },
-    {
-        text: "I like to sing the song of my people.",
-        user: "Floki",
-        added: getFormattedDate()
-    }
-];
-
 //home page route
-router.get("/", (req, res) => {
-    res.render("index", { messages: messages, links: links });
+router.get("/", async (req, res) => {
+    try {
+        const messages = await getAllMessages();
+        res.render("index", { messages: messages, links: links });
+    } catch (err) {
+        console.error("Error getting messages:", err);
+        res.status(500).send("Internal Server Error");
+    }
 });
 
 //new message page route
@@ -31,14 +24,16 @@ router.get("/new", (req, res) => {
 });
 
 //post new message route
-router.post("/new", (req, res) => {
-    const newMessage = {
-        text: req.body.message,
-        user: req.body.user,
-        added: getFormattedDate()
-    };
-    messages.push(newMessage);
-    res.redirect("/");
+router.post("/new", async (req, res) => {
+    const { message, user } = req.body;
+
+    try {
+        await addNewMesasge(message, user);
+        res.redirect("/");
+    } catch (err) {
+        console.error("Error adding message:", err);
+        res.status(500).send("Internal Server Error");
+    }
 });
 
 module.exports = router;

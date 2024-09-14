@@ -98,6 +98,7 @@ textarea,
 input {
     max-width: 950px;
     padding: 5px;
+    font-family: sans-serif;
 }
 
 .input-label {
